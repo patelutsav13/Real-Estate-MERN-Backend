@@ -26,7 +26,7 @@ const upload = multer({
 // Check file type
 function checkFileType(file, cb) {
   // STRICTLY ALLOW ONLY: jpeg, jpg, png
-  const filetypes = /jpeg|jpg|png/;
+  const filetypes = /jpeg|jpg|png|jfif|webp/;
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
   const mimetype = filetypes.test(file.mimetype);
 
@@ -36,9 +36,10 @@ function checkFileType(file, cb) {
     return cb(null, true);
   } else {
     console.error("File type rejected:", file.mimetype, file.originalname);
-    cb('Error: Images Only! (jpeg, jpg, png)');
+    cb('Error: Images Only! (jpeg, jpg, png, jfif, webp)');
   }
 }
 
 export default upload;
+
 
